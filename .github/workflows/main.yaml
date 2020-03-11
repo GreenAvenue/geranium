@@ -22,7 +22,7 @@ jobs:
     - name: catReadme
       run: cat ./README.md
     - name: echo
-      run: echo "TODO: lintチェックを走らせる"
+      run: echo "TODO:lintチェックを走らせる"
   lint-innfra:
     runs-on: ubuntu-latest
     name: deploy blog action
@@ -32,7 +32,7 @@ jobs:
     - name: catReadme
       run: cat ./README.md
     - name: echo
-      run: echo "TODO: lintチェックを走らせる"
+      run: echo "TODO:lintチェックを走らせる"
   build-and-test-api:
     runs-on: ubuntu-latest
     name: deploy blog action
@@ -40,7 +40,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2-beta
     - name: echo
-      run: echo "TODO: build からの test コードを走らせる"
+      run: echo "TODO:build からの test コードを走らせる"
   build-and-test-front:
     runs-on: ubuntu-latest
     name: deploy blog action
@@ -48,7 +48,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2-beta
     - name: echo
-      run: echo "TODO: build からの test コードを走らせる"
+      run: echo "TODO:build からの test コードを走らせる"
   build-and-test-infra:
     runs-on: ubuntu-latest
     name: deploy blog action
@@ -56,5 +56,5 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2-beta
     - name: echo
-      run: echo "TODO: build からの test コードを走らせる"
+      run: echo "TODO:build からの test コードを走らせる"
 

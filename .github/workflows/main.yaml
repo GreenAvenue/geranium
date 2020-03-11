@@ -12,7 +12,7 @@ jobs:
     - name: catReadme
       run: cat ./README.md
     - name: echo
-      run: echo "TODO: lintチェックを走らせる"
+      run: echo "TODO:lintチェックを走らせる"
   lint-front:
     runs-on: ubuntu-latest
     name: deploy blog action

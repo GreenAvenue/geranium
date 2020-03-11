@@ -3,6 +3,7 @@ name: "main actions"
 on: [push]
 
 jobs:
+  # Note: 今は処理がないですが、お試しで1つだけ走らせています
   lint-api:
     runs-on: ubuntu-latest
     name: lint api action
@@ -13,6 +14,8 @@ jobs:
       run: cat ./README.md
     - name: echo
       run: echo "TODO:lintチェックを走らせる"
+
+  # Note: 以下は今後作る予定のアクションです。
   # lint-front:
   #   runs-on: ubuntu-latest
   #   name: lint front action

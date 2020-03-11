@@ -1,0 +1,11 @@
+
+# LocalStack
+# TODO: ボリューム設定などもう少し真面目にやるべきかも
+localstack:
+  image: localstack/localstack:latest
+  ports:
+    - "9000:8080"
+    - "4567-4578:4567-4578"
+
+# TODO: 以下、必要に応じて、MySQLなりRedisなりを追加するかも
+

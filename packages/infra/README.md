@@ -26,6 +26,14 @@ docker-compose up -d
 localstack用コマンド <-> AWS本番用コマンドに
 自動コンバートできる仕組みが欲しくなる。)
 
+### awscliの事前準備
+```
+$ aws configure --profile localstack
+AWS Access Key ID [None]: dummy
+AWS Secret Access Key [None]: dummy
+Default region name [None]: us-east-1
+Default output format [None]: text
+```
 Ex)
 ```
 - To AWS service

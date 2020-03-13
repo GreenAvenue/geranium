@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist
+!includeurl AWSPuml/AWSCommon.puml
+!includeurl AWSPuml/GroupIcons/Cloud.puml
+!includeurl AWSPuml/GroupIcons/CorporateDataCenter.puml
+!includeurl AWSPuml/Compute/EC2.puml
+!includeurl AWSPuml/Storage/EFSFilesystem.puml
+!includeurl AWSPuml/Storage/ElasticFileSystemEFS.puml
+!includeurl AWSPuml/MigrationAndTransfer/DataSync.puml
+!includeurl AWSPuml/MigrationAndTransfer/DataSyncAgent.puml
+!includeurl AWSPuml/GroupIcons/Region.puml
+
+CorporateDataCenter(dc,DC,"データセンター") {
+    node "X.X.X.X" <<サーバー>> as server
+}
+Cloud(aws,alias,AWSアカウント) {
+    Region(region,ap-northeast-1,"東京リージョン") {
+        EC2(ec2,EC2,インスタンス) {
+            DataSyncAgent(dsa,instance-name,データ転送インスタンス,m5.2xlarge)
+        }
+        DataSync(ds,DataSync,データのSyncを行う)
+        ElasticFileSystemEFS(efs,"fs-xxxxxx","EFSファイルシステム")
+    }
+}
+
+server 0---> dsa : NFS\n(Direct Connect 経由)
+dsa 0---> ds : TLS
+ds 0--> efs
+
+@enduml

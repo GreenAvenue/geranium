@@ -5,7 +5,7 @@ localstack:
   image: localstack/localstack:latest
   ports:
     - "9000:8080"
-    - "4567-4578:4567-4578"
+    - "4567-4599:4567-4599"
 
 # TODO: 以下、必要に応じて、MySQLなりRedisなりを追加するかも
 

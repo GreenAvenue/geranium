@@ -60,4 +60,3 @@ STS at http://localhost:4592
 IAM at http://localhost:4593  
 EC2 at http://localhost:4597  
 KMS at http://localhost:4599  
-=======

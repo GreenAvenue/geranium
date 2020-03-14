@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "strictNullChecks": true,
+    "target": "es2017",
+    "lib": ["esnext", "dom"],
+    "newLine": "lf",
+    "outDir": "build",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "emitDecoratorMetadata": true,
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

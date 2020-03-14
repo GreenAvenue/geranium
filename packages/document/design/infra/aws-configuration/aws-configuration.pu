@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist
+!includeurl AWSPuml/AWSCommon.puml
+!includeurl AWSPuml/AWSSimplified.puml /' シンプルなアイコンを使用する '/
+
+!includeurl AWSPuml/Storage/all.puml
+!includeurl AWSPuml/Compute/Lambda.puml
+!includeurl AWSPuml/Database/DynamoDB.puml
+!includeurl AWSPuml/Mobile/APIGateway.puml
+
+SimpleStorageServiceS3(FrontHtml, "S3:フロントコード", "S3")
+APIGateway(APIGateway, "APIGateway", "APIGateway")
+Lambda(Api, "API", "Lambda")
+DynamoDB(Db, "DB", "DynamoDB")
+Lambda(HealthChack, "HealthChack", "Lambda")
+
+( ブラウザ ) ---> ( CloudFront ): index.htmlの\nダウンロード
+( CloudFront ) ---> FrontHtml
+( ブラウザ ) ---> ( Cognito ): ログイン
+( ブラウザ ) ---> APIGateway: 各種リクエスト
+APIGateway ---> Api
+Api --> Db: 各種データ操作
+HealthChack --> Api: ヘルスチェック用の\nリクエスト
+
+@enduml

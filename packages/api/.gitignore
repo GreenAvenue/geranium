@@ -63,3 +63,5 @@ typings/
 # js files
 dist
 
+build/
+package-lock.json

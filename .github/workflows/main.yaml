@@ -18,8 +18,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: check api
       run: cd ./packages/api/ && npm install && npm run lint && npm run build && npm run test
+    # TODO: frontのテストはこれから作る
     - name: check front
-      run: cd ./packages/front/ && npm install && npm run lint && npm run build && npm run test
+      run: cd ./packages/front/ && npm install && npm run lint && npm run build # && npm run test:unit
 
     # TODO: infraも適宜、構文追加や実行確認コマンドを追加する
     # - name: check front

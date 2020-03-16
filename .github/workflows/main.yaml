@@ -10,7 +10,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2-beta
     - name: cd api
-      run: cd ./geranium/packages/api/
+      run: cd ./packages/api/
     - name: lint
       run: npm run lint
   lint-front:
@@ -20,7 +20,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2-beta
     - name: cd front
-      run: cd ./geranium/packages/front/
+      run: cd ./packages/front/
     - name: lint
       run: npm run lint
 

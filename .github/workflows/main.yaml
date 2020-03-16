@@ -3,17 +3,26 @@ name: "main actions"
 on: [push]
 
 jobs:
-  # Note: 今は処理がないですが、お試しで1つだけ走らせています
   lint-api:
     runs-on: ubuntu-latest
     name: lint api action
     steps:
     - name: Checkout
       uses: actions/checkout@v2-beta
-    - name: catReadme
-      run: cat ./README.md
-    - name: echo
-      run: echo "TODO:lintチェックを走らせる"
+    - name: cd api
+      run: cd ./geranium/packages/api/
+    - name: lint
+      run: npm run lint
+  lint-front:
+    runs-on: ubuntu-latest
+    name: lint front action
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2-beta
+    - name: cd front
+      run: cd ./geranium/packages/front/
+    - name: lint
+      run: npm run lint
 
   # Note: 以下は今後作る予定のアクションです。
   # lint-front:

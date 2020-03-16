@@ -3,53 +3,34 @@ name: "main actions"
 on: [push]
 
 jobs:
-  lint-api:
+  check-job:
     runs-on: ubuntu-latest
-    name: lint api action
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    name: check-job
     steps:
+
     - name: Checkout
       uses: actions/checkout@v2-beta
-    - name: cd api
+
+    # Setup
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    # api
+    - name: api install and build
       run: cd ./packages/api/
-    - name: npm i
-      run: npm i
-    - name: lint
+      run: npm install
+
+    - name: api lint
       run: npm run lint
-  lint-front:
-    runs-on: ubuntu-latest
-    name: lint front action
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2-beta
-    - name: cd front
-      run: cd ./packages/front/
-    - name: npm i
-      run: npm i
-    - name: lint
-      run: npm run lint
-  build-and-test-api:
-    runs-on: ubuntu-latest
-    name: build and test api action
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2-beta
-    - name: cd api
-      run: cd ./packages/api/
-    - name: npm i
-      run: npm i
-    - name: lint
-      run: npm run build
-  build-and-test-front:
-    runs-on: ubuntu-latest
-    name: lint front action
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2-beta
-    - name: cd front
-      run: cd ./packages/front/
-    - name: npm i
-      run: npm i
-    - name: lint
+
+    - name: api build
       run: npm run build
 
   # Note: 以下は今後作る予定のアクションです。

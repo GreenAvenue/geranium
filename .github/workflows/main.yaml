@@ -23,18 +23,28 @@ jobs:
       run: cd ./packages/front/
     - name: lint
       run: npm run lint
+  build-api:
+    runs-on: ubuntu-latest
+    name: build and test api action
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2-beta
+    - name: cd api
+      run: cd ./packages/api/
+    - name: lint
+      run: npm run build
+  lint-front:
+    runs-on: ubuntu-latest
+    name: lint front action
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2-beta
+    - name: cd front
+      run: cd ./packages/front/
+    - name: lint
+      run: npm run build
 
   # Note: 以下は今後作る予定のアクションです。
-  # lint-front:
-  #   runs-on: ubuntu-latest
-  #   name: lint front action
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2-beta
-  #   - name: catReadme
-  #     run: cat ./README.md
-  #   - name: echo
-  #     run: echo "TODO:lintチェックを走らせる"
   # lint-infra:
   #   runs-on: ubuntu-latest
   #   name: lint infra action

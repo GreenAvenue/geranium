@@ -23,7 +23,7 @@ jobs:
       run: cd ./packages/front/
     - name: lint
       run: npm run lint
-  build-api:
+  build-and-test-api:
     runs-on: ubuntu-latest
     name: build and test api action
     steps:
@@ -33,7 +33,7 @@ jobs:
       run: cd ./packages/api/
     - name: lint
       run: npm run build
-  lint-front:
+  build-and-test-front:
     runs-on: ubuntu-latest
     name: lint front action
     steps:

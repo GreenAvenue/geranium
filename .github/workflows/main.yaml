@@ -11,6 +11,8 @@ jobs:
       uses: actions/checkout@v2-beta
     - name: cd api
       run: cd ./packages/api/
+    - name: npm i
+      run: npm i
     - name: lint
       run: npm run lint
   lint-front:
@@ -21,6 +23,8 @@ jobs:
       uses: actions/checkout@v2-beta
     - name: cd front
       run: cd ./packages/front/
+    - name: npm i
+      run: npm i
     - name: lint
       run: npm run lint
   build-and-test-api:
@@ -31,6 +35,8 @@ jobs:
       uses: actions/checkout@v2-beta
     - name: cd api
       run: cd ./packages/api/
+    - name: npm i
+      run: npm i
     - name: lint
       run: npm run build
   build-and-test-front:
@@ -41,6 +47,8 @@ jobs:
       uses: actions/checkout@v2-beta
     - name: cd front
       run: cd ./packages/front/
+    - name: npm i
+      run: npm i
     - name: lint
       run: npm run build
 

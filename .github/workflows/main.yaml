@@ -23,18 +23,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     # api
-    - name: ls
-      run: pwd && ls -la
-    - name: cd ./packages/api/
-      run: cd ./packages/api/
-    - name: ls
-      run: pwd && ls -la
-    - name: npm install
-      run: npm install
-    - name: api lint
-      run: npm run lint
-    - name: api build
-      run: npm run build
+    - name: check api
+      run: cd ./packages/api/ && npm install && npm run lint && npm run test
 
   # Note: 以下は今後作る予定のアクションです。
   # lint-infra:

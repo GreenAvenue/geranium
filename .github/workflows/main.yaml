@@ -5,44 +5,23 @@ on: [push]
 jobs:
   check-job:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x]
-
     name: check-job
     steps:
-
     - name: Checkout
       uses: actions/checkout@v2-beta
-
-    # Setup
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
-    # api
     - name: check api
-      run: cd ./packages/api/ && npm install && npm run lint && npm run test
+      run: cd ./packages/api/ && npm install && npm run lint && npm run build && npm run test
+    - name: check front
+      run: cd ./packages/front/ && npm install && npm run lint && npm run build && npm run test
 
-  # Note: 以下は今後作る予定のアクションです。
-  # lint-infra:
-  #   runs-on: ubuntu-latest
-  #   name: lint infra action
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2-beta
-  #   - name: catReadme
-  #     run: cat ./README.md
-  #   - name: echo
-  #     run: echo "TODO:lintチェックを走らせる"
-  # build-and-test-infra:
-  #   runs-on: ubuntu-latest
-  #   name: build and test infra action
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2-beta
-  #   - name: echo
-  #     run: echo "TODO:build からの test コードを走らせる"
+    # TODO: infraも適宜、構文追加や実行確認コマンドを追加する
+    # - name: check front
+    #   run: cd ./packages/front/ && npm install && npm run lint && npm run build
 

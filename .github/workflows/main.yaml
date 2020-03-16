@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x]
-    name: check-job
+    name: check-api-job
     steps:
     - name: Checkout
       uses: actions/checkout@v2-beta
@@ -24,7 +24,7 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x]
-    name: check-job
+    name: check-front-job
     steps:
     - name: Checkout
       uses: actions/checkout@v2-beta
@@ -32,19 +32,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: check front
-      run: cd ./packages/front/ && npm install && npm run lint && npm run build && npm run test
-
-    # TODO: front側は要調査。
     - name: front install
       run: cd ./packages/front/ && npm install
-
     - name: front lint
       run: cd ./packages/front/ && npm run lint
-
     - name: front build
       run: cd ./packages/front/ && npm run build
-
 
     # TODO: infraも適宜、構文追加や実行確認コマンドを追加する
     # - name: check front

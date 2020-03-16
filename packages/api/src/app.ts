@@ -3,6 +3,7 @@ import * as bodyParser from "body-parser";
 import * as awsServerlessExpressMiddleware from "aws-serverless-express/middleware";
 
 // import usersController from "./controllers/users";
+const router = require("express-promise-router")();
 
 // declare a new express app
 const app = express();
@@ -15,7 +16,6 @@ app.use((req, res, next) => {
 	next();
 });
 
-const router = require("express-promise-router")();
 router.get("/", async (req, res) => {
 	res.json({
 		meta: {

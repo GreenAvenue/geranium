@@ -23,6 +23,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     # api
+    - name: ls
+      run: pwd && ls -la
     - name: cd ./packages/api/
       run: cd ./packages/api/
     - name: ls

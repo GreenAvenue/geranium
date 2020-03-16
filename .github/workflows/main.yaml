@@ -23,12 +23,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     # api
-    - run: cd ./packages/api/
-    - run: npm install
-
+    - name: cd ./packages/api/
+      run: cd ./packages/api/
+    - name: ls
+      run: pwd && ls -la
+    - name: npm install
+      run: npm install
     - name: api lint
       run: npm run lint
-
     - name: api build
       run: npm run build
 

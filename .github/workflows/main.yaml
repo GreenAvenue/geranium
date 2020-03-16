@@ -35,9 +35,16 @@ jobs:
     - name: check front
       run: cd ./packages/front/ && npm install && npm run lint && npm run build && npm run test
 
-    # TODO: frontのテストはこれから作る
-    - name: check front
-      run: cd ./packages/front/ && npm install && npm run lint && npm run build # && npm run test:unit
+    # TODO: front側は要調査。
+    - name: front install
+      run: cd ./packages/front/ && npm install
+
+    - name: front lint
+      run: cd ./packages/front/ && npm run lint
+
+    - name: front build
+      run: cd ./packages/front/ && npm run build
+
 
     # TODO: infraも適宜、構文追加や実行確認コマンドを追加する
     # - name: check front

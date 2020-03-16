@@ -3,7 +3,7 @@ name: "main actions"
 on: [push]
 
 jobs:
-  check-job:
+  check-api-job:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,6 +18,23 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: check api
       run: cd ./packages/api/ && npm install && npm run lint && npm run build && npm run test
+
+  check-front-job:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+    name: check-job
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2-beta
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: check front
+      run: cd ./packages/front/ && npm install && npm run lint && npm run build && npm run test
+
     # TODO: frontのテストはこれから作る
     - name: check front
       run: cd ./packages/front/ && npm install && npm run lint && npm run build # && npm run test:unit

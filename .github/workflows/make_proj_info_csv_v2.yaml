@@ -31,6 +31,7 @@ jobs:
           R4TKN: ${{ secrets.R4TKN }}
       - name: Run python script for make gantt chart
         run: |
+          pwd
           python ./.github/workflows/scripts/make_gantt_chart.py
           mv ./.github/workflows/scripts/geranium_open_tasks.svg ~/
       - name: deploy

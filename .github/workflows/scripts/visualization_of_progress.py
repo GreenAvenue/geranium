@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 # Please set a token.
-token = os.environ.get('R4TKN')
+token = os.environ['R4TKN']
 
 GIT = Github(token)
 ORG = 'GreenAvenue'

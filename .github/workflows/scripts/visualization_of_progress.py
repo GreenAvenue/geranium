@@ -2,6 +2,7 @@ from github import Github
 import os
 import numpy as np
 import pandas as pd
+from datetime import timedelta
 
 # Please set a token.
 token = os.environ['R4TKN']
@@ -91,6 +92,11 @@ df_issues['user'] = df_issues['user'].map(lambda x: None if x is None else x.log
 df_issues['closed_by'] = df_issues['closed_by'].map(lambda x: None if x is None else x.login)
 df_issues['actual_man_hour'] = df_issues['labels'].map(make_col_act_man_hour)
 df_issues['estimated_man_hour'] = df_issues['labels'].map(make_col_est_man_hour)
+
+JST = 9
+df_issues['created_at'] = df_issues['created_at'].map(lambda x: x + timedelta(hours=JST))
+df_issues['closed_at'] = df_issues['closed_at'].map(lambda x: x + timedelta(hours=JST))
+df_issues['updated_at'] = df_issues['updated_at'].map(lambda x: x + timedelta(hours=JST))
 
 df_issues = df_issues.merge(df_proj, on='no', how='left')
 df_issues.sort_values('no').to_csv('~/issues.csv', index=False)

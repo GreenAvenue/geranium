@@ -36,10 +36,9 @@ jobs:
           mv ~/issues.csv ./visualize/
           cd ./visualize
           git add ./issues.csv
-          git config --local user.email ${R4EMAIL}
-          git config --local user.name ${GITHUB_ACTOR}
           git commit -m 'Test.'
-          git push origin master
+          git push https://x-access-token:${R4TKN}@github.com/GreenAvenue/geranium-visualization-progress master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           R4EMAIL: ${{ secrets.R4EMAIL }}
+          R4TKN: ${{ secrets.R4TKN }}

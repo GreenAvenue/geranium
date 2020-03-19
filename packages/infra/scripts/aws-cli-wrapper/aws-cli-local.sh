@@ -12,7 +12,6 @@ function after() {
 
 function getPort() {
   case $1 in
-
   "ec2")
     echo "4597";;
 

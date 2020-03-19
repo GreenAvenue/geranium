@@ -94,4 +94,4 @@ df_issues['actual_man_hour'] = df_issues['labels'].map(make_col_act_man_hour)
 df_issues['estimated_man_hour'] = df_issues['labels'].map(make_col_est_man_hour)
 
 df_issues = df_issues.merge(df_proj, on='no', how='left')
-df_issues.sort_values('no').to_csv('issues.csv', index=False)
+df_issues.sort_values('no').to_csv('~/issues.csv', index=False)

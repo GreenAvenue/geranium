@@ -31,7 +31,7 @@ jobs:
       - name: deploy
         run: |
           git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/GreenAvenue/geranium-visualization-progress visualize
-          mv ./.github/workflows/scripts/issues.csv ./visualize/
+          mv ~/issues.csv ./visualize/
           git add ./visualize/issues.csv
           git commit -m 'Test.'
           git push origin master

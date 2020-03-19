@@ -1,8 +1,8 @@
-name: Schedule run test
+name: "Schedule run test"
 
-on:
-  schedule:
-    - cron: '*/10 * * * *'
+on: [push]
+    #  schedule:
+    #- cron: '*/10 * * * *'
 
 jobs:
   build:

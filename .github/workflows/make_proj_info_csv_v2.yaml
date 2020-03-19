@@ -24,6 +24,7 @@ jobs:
           pip install PyGithub
           pip install numpy
           pip install pandas
+          pip install Python-Gantt
       - name: Run python script for make csv
         run: python ./.github/workflows/scripts/visualization_of_progress.py
         env:

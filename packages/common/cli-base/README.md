@@ -20,3 +20,18 @@ go mod init
   - [【golang環境構築】Modulesでpackage管理をする \- Qiita](https://qiita.com/fox777/items/a8cb025df5439902b6c4)
 
 
+## cli-baseの使い方
+
+### 前提
+
+- go コマンドが使用できること
+
+### ビルド&実行
+
+```bash
+cd ./geranium/packages/common/cli-base/
+go build
+
+./CliBaseClass
+```
+

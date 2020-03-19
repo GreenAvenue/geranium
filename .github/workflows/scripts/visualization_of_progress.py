@@ -1,9 +1,10 @@
 from github import Github
+import os
 import numpy as np
 import pandas as pd
 
 # Please set a token.
-token = ''
+token = os.environ.get('R4TKN')
 
 GIT = Github(token)
 ORG = 'GreenAvenue'
@@ -91,5 +92,6 @@ df_issues['user'] = df_issues['user'].map(lambda x: None if x is None else x.log
 df_issues['closed_by'] = df_issues['closed_by'].map(lambda x: None if x is None else x.login)
 df_issues['actual_man_hour'] = df_issues['labels'].map(make_col_act_man_hour)
 df_issues['estimated_man_hour'] = df_issues['labels'].map(make_col_est_man_hour)
+
 df_issues = df_issues.merge(df_proj, on='no', how='left')
 df_issues.sort_values('no').to_csv('issues.csv', index=False)

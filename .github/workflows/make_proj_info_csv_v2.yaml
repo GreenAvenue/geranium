@@ -25,6 +25,6 @@ jobs:
           pip install numpy
           pip install pandas
       - name: Run python script
-        run: pyhton ./.github/workflows/scripts/visualization_of_progress.py
+        run: python ./.github/workflows/scripts/visualization_of_progress.py
         env:
           R4TKN: ${{ secrets.R4TKN }}

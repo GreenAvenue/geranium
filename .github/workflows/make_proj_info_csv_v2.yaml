@@ -30,6 +30,8 @@ jobs:
           R4TKN: ${{ secrets.R4TKN }}
       - name: deploy
         run: |
+          git config --global user.email ${R4EMAIL}
+          git config --global user.name ${GITHUB_ACTOR}
           git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/GreenAvenue/geranium-visualization-progress visualize
           mv ~/issues.csv ./visualize/
           git add ./visualize/issues.csv
@@ -37,3 +39,4 @@ jobs:
           git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EMAIL: ${{ secrets.R4EMAIL }}

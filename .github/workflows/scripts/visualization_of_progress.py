@@ -12,6 +12,7 @@ REPO = 'geranium'
 
 TRGT_COLS = [
     'no',
+    'type',
     'title',
     'assignees',
     'milestone',
@@ -40,10 +41,8 @@ for _proj in projects:
                                      index=proj_cols,
                                      name=len(df_proj)))
 
-#import sys
-#sys.exit(0)
-
 issues = [[_issue.number,
+           _issue.pull_request,
            _issue.title,
            _issue.assignees,
            _issue.milestone,
@@ -55,7 +54,6 @@ issues = [[_issue.number,
            _issue.closed_by,
            _issue.updated_at]
              for _issue in repo.get_issues(state='all')]
-
 
 def make_col_act_man_hour(x):
     if x is None:
@@ -84,6 +82,7 @@ def make_col_est_man_hour(x):
     return np.min(man_hour_labels)
 
 df_issues = pd.DataFrame(issues, columns=TRGT_COLS)
+df_issues['type'] = df_issues['type'].map(lambda x: 'Issue' if x is None else 'PullRequest')
 df_issues['assignees'] = df_issues['assignees'].map(lambda x: ';'.join([_x.login for _x in x]))
 df_issues['due_on'] = df_issues['milestone'].map(lambda x: None if x is None else x.due_on)
 df_issues['milestone'] = df_issues['milestone'].map(lambda x: None if x is None else x.title)

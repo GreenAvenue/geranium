@@ -34,7 +34,8 @@ jobs:
           git config --global user.name ${GITHUB_ACTOR}
           git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/GreenAvenue/geranium-visualization-progress visualize
           mv ~/issues.csv ./visualize/
-          git add ./visualize/issues.csv
+          cd ./visualize
+          git add ./issues.csv
           git commit -m 'Test.'
           git push origin master
         env:

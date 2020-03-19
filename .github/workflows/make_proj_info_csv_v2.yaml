@@ -40,7 +40,7 @@ jobs:
           git config --global user.name ${GITHUB_ACTOR}
           git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/GreenAvenue/geranium-visualization-progress visualize
           mv ~/issues.csv ./visualize/
-          mv ~/geranium_open_tasks.svg ./visualize/
+          mv /home/runner/work/geranium/geranium/geranium_open_tasks.svg ./visualize/
           cd ./visualize
           git add ./issues.csv
           git add ./geranium_open_tasks.svg

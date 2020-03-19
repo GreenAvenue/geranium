@@ -32,8 +32,8 @@ jobs:
       - name: Run python script for make gantt chart
         run: |
           pwd
+          ls -la
           python ./.github/workflows/scripts/make_gantt_chart.py
-          mv ./.github/workflows/scripts/geranium_open_tasks.svg ~/
       - name: deploy
         run: |
           git config --global user.email ${R4EMAIL}

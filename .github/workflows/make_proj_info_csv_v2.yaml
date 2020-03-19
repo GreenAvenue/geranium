@@ -39,4 +39,4 @@ jobs:
           git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EMAIL: ${{ secrets.R4EMAIL }}
+          R4EMAIL: ${{ secrets.R4EMAIL }}

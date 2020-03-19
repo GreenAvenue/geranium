@@ -28,3 +28,12 @@ jobs:
         run: python ./.github/workflows/scripts/visualization_of_progress.py
         env:
           R4TKN: ${{ secrets.R4TKN }}
+      - name: deploy
+        run: |
+          git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}github.com/GreenAvenue/geranium-visualization-progress visualize
+          mv ./.github/workflows/scripts/issues.csv ./visualize/
+          git add ./visualize/issues.csv
+          git commit -m 'Test.'
+          git push origin master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

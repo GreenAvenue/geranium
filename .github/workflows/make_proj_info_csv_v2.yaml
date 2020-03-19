@@ -36,6 +36,8 @@ jobs:
           mv ~/issues.csv ./visualize/
           cd ./visualize
           git add ./issues.csv
+          git config --local user.email ${R4EMAIL}
+          git config --local user.name ${GITHUB_ACTOR}
           git commit -m 'Test.'
           git push origin master
         env:

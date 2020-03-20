@@ -82,13 +82,7 @@ function getPort() {
   "kinesis")
     echo "4568";;
 
-  "API")
-    echo "4567";;
-
-  "s3")
-    echo "4572";;
-
-  "s3")
+  "apigateway")
     echo "4567";;
 
   *)
@@ -98,7 +92,7 @@ function getPort() {
 
 function main() {
   local port=`getPort $1`
-  aws $@ --endpoint-url=${BASE_URL}:${port}
+  aws $@ --endpoint-url=${BASE_URL}:${port} --profile localstack
 }
 
 before

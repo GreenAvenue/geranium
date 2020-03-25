@@ -1,0 +1,52 @@
+name: "Schedule run test"
+
+on: [push]
+    #  schedule:
+    #- cron: '*/10 * * * *'
+
+jobs:
+  build:
+    name: cron test job
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python # Set Python version
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyGithub
+          pip install numpy
+          pip install pandas
+          pip install Python-Gantt
+      - name: Run python script for make csv
+        run: python ./.github/workflows/scripts/visualization_of_progress.py
+        env:
+          R4TKN: ${{ secrets.R4TKN }}
+      - name: Run python script for make gantt chart
+        run: |
+          pwd
+          ls -la
+          python ./.github/workflows/scripts/make_gantt_chart.py
+      - name: deploy
+        run: |
+          git config --global user.email ${R4EMAIL}
+          git config --global user.name ${GITHUB_ACTOR}
+          git clone https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/GreenAvenue/geranium-visualization-progress visualize
+          mv ~/issues.csv ./visualize/
+          mv /home/runner/work/geranium/geranium/geranium_open_tasks.svg ./visualize/
+          cd ./visualize
+          git add ./issues.csv
+          git add ./geranium_open_tasks.svg
+          git commit -m 'Test.'
+          git push https://x-access-token:${R4TKN}@github.com/GreenAvenue/geranium-visualization-progress master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          R4EMAIL: ${{ secrets.R4EMAIL }}
+          R4TKN: ${{ secrets.R4TKN }}

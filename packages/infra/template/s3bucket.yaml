@@ -1,0 +1,179 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: This CloudFormation template to create S3 Bucket
+
+Parameters:
+  # S3バケット名のヘッダー部を定義する 
+  Header:
+    Description: bucket header name
+    Type: String
+  # 環境を指定する
+  Environment:
+    Description: usage environment
+    Type: String
+    AllowedValues:
+      - local
+      - develop
+      - staging
+      - performance
+      - product
+
+Resources:
+  #==============================
+  # lambda,swaggerファイルをdeploy時に参照するバケット
+  #==============================
+  DeployS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Header}-${Environment}-v1-deploy"
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  DeployS3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref DeployS3Bucket
+      PolicyDocument:
+        Id: DeployS3BucketPolicy
+        Version: '2012-10-17'
+        Statement:
+        - Sid: DeployS3Acl
+          Effect: Allow
+          Principal: {
+            Service: "cloudformation.amazonaws.com"
+          }
+          Action:
+          - "s3:GetObject"
+          Resource:
+          - !Sub "arn:aws:s3:::${Header}-${Environment}-v1-deploy/*"
+
+  #==============================
+  # API参照するバケット
+  #==============================
+  ApiS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Header}-${Environment}-v1-api"
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  ApiS3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ApiS3Bucket
+      PolicyDocument:
+        Id: ApiS3BucketPolicy
+        Version: '2012-10-17'
+        Statement:
+        - Sid: ApiS3Acl
+          Effect: Allow
+          Principal: {
+            Service: "cloudformation.amazonaws.com"
+          }
+          Action:
+          - "s3:GetObject"
+          Resource:
+          - !Sub "arn:aws:s3:::${Header}-${Environment}-v1-api/*"
+
+  #==============================
+  # 画像ファイルを格納参照するバケット
+  #==============================
+  ImgFilesS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Header}-${Environment}-v1-imgfiles"
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  ImgFilesS3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ImgFilesS3Bucket
+      PolicyDocument:
+        Id: ImgFilesS3BucketPolicy
+        Version: '2012-10-17'
+        Statement:
+        - Sid: ImgFilesS3Acl
+          Effect: Allow
+          Principal: {
+            Service: "cloudformation.amazonaws.com"
+          }
+          Action:
+          - "s3:GetObject"
+          Resource:
+          - !Sub "arn:aws:s3:::${Header}-${Environment}-v1-imgfiles/*"
+
+  #==============================
+  # Frontで参照するバケット
+  #==============================
+  FrontS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Header}-${Environment}-v1-front"
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  FrontS3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FrontS3Bucket
+      PolicyDocument:
+        Id: FrontS3BucketPolicy
+        Version: '2012-10-17'
+        Statement:
+        - Sid: FrontS3Acl
+          Effect: Allow
+          Principal: {
+            Service: "cloudformation.amazonaws.com"
+          }
+          Action:
+          - "s3:GetObject"
+          Resource:
+          - !Sub "arn:aws:s3:::${Header}-${Environment}-v1-front/*"
+
+  #==============================
+  # Logを格納するバケット
+  #==============================
+  LogS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Header}-${Environment}-v1-log"
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  LogS3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref LogS3Bucket
+      PolicyDocument:
+        Id: LogS3BucketPolicy
+        Version: '2012-10-17'
+        Statement:
+        - Sid: LogS3Acl
+          Effect: Allow
+          Principal: {
+            Service: "cloudformation.amazonaws.com"
+          }
+          Action:
+          - "s3:GetObject"
+          Resource:
+          - !Sub "arn:aws:s3:::${Header}-${Environment}-v1-log/*"
